@@ -1,0 +1,30 @@
+<resources>
+    <string name="app_name">仓库管理</string>
+    <string name="btn_q_1">添加或修改库存</string>
+    <string name="btn_q_2">查询库存</string>
+    <string name="btn_q_3">删除商品</string>
+    <string name="text_name_no">商品编号:</string>
+    <string name="text_name_no_2">货号</string>
+
+    <string name="loc_name_1">位置1:</string>
+    <string name="loc_name_2">位置2:</string>
+    <string name="loc_name_3">位置3:</string>
+    <string name="loc_name_4">位置4:</string>
+    <string name="loc_name_5">位置5:</string>
+    <string name="loc_name_11">位置1</string>
+    <string name="loc_name_22">位置2</string>
+    <string name="loc_name_33">位置3</string>
+    <string name="loc_name_44">位置4</string>
+    <string name="loc_name_55">位置5</string>
+    <string name="loc_state_1">满了</string>
+    <string name="loc_state_2">满了:</string>
+    <string name="loc_state_3">满了:</string>
+    <string name="loc_state_4">满了:</string>
+    <string name="loc_state_5">满了:</string>
+    <string name="save">保存</string>
+    <string name="query">查询</string>
+    <string name="delete">删除</string>
+
+
+    <string name="title_activity_add">AddActivity</string>
+</resources>

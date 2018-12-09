@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/f_id"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="lzj.jey.warehouse.MainActivity">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_1"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:onClick="to_add"
+
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/btn_q_1"
+            android:textSize="30sp"
+            />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_2"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="20dp"
+        android:onClick="to_query"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/btn_q_2"
+            android:textSize="30sp" />
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_3"
+        android:layout_width="match_parent"
+        android:layout_height="100sp"
+        android:layout_marginTop="20dp"
+        android:onClick="to_delete"
+        >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/btn_q_3"
+            android:textSize="30sp" />
+
+    </android.support.v7.widget.CardView>
+</LinearLayout>
