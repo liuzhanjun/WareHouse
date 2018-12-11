@@ -1,5 +1,7 @@
 package lzj.jey.warehouse;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.suke.widget.SwitchButton;
 
@@ -15,6 +18,7 @@ import java.util.List;
 
 import lzj.jey.warehouse.bean.ComInfo;
 import lzj.jey.warehouse.db.DbCallBack;
+import lzj.jey.warehouse.ui.SaveOrderDialg;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -23,6 +27,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     SwitchButton loc_state_1, loc_state_2, loc_state_3, loc_state_4, loc_state_5;//位置状态
     Button btn_save;
     TextView query_info;
+    private SaveOrderDialg dialg;
+    private ComInfo comInfo;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         setContentView(R.layout.activity_add);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        context = this;
         initView();
         initData();
 
@@ -87,22 +94,32 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 boolean is_loc_state4 = loc_state_4.isChecked();
                 boolean is_loc_state5 = loc_state_5.isChecked();
 
-                ComInfo comInfo = new ComInfo();
+                comInfo = new ComInfo();
                 comInfo.setComInfoNO(add_name);
-                if (isEmpty(loc1)) {
+                if (isNotEmpty(loc1)) {
                     comInfo.setLoc1(loc1);
+                } else {
+                    comInfo.setLoc1("无");
                 }
-                if (isEmpty(loc2)) {
+                if (isNotEmpty(loc2)) {
                     comInfo.setLoc2(loc2);
+                } else {
+                    comInfo.setLoc2("无");
                 }
-                if (isEmpty(loc3)) {
+                if (isNotEmpty(loc3)) {
                     comInfo.setLoc3(loc3);
+                } else {
+                    comInfo.setLoc3("无");
                 }
-                if (isEmpty(loc4)) {
+                if (isNotEmpty(loc4)) {
                     comInfo.setLoc4(loc4);
+                } else {
+                    comInfo.setLoc4("无");
                 }
-                if (isEmpty(loc5)) {
+                if (isNotEmpty(loc5)) {
                     comInfo.setLoc5(loc5);
+                } else {
+                    comInfo.setLoc5("无");
                 }
 
 
@@ -112,12 +129,24 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 comInfo.setLocState4(checkState(is_loc_state4));
                 comInfo.setLocState5(checkState(is_loc_state5));
 
-                DbUtils.saveInfo(comInfo, this);
+                SaveOrderDialg.OnCloseListener listener = new SaveOrderDialg.OnCloseListener() {
+                    @Override
+                    public void onClick(Dialog dialog, boolean confirm) {
+                        if (confirm) {
+                            DbUtils.saveInfo(comInfo, context);
+                        }
+                        dialg.dismiss();
+                    }
+                };
+                dialg = new SaveOrderDialg(this, "是否保存内容?");
+                dialg.setListener(listener);
+                dialg.show();
+
                 break;
         }
     }
 
-    private boolean isEmpty(String loc1) {
+    private boolean isNotEmpty(String loc1) {
         if (!loc1.equals("") || !loc1.isEmpty()) {
             return true;
         }

@@ -1,5 +1,6 @@
 package lzj.jey.warehouse;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,12 +12,15 @@ import java.util.List;
 
 import lzj.jey.warehouse.bean.ComInfo;
 import lzj.jey.warehouse.db.DbCallBack;
+import lzj.jey.warehouse.ui.SaveOrderDialg;
 
 public class DeleteActivity extends AppCompatActivity {
 
     EditText add_no;
     TextView query_info;
     Context context;
+    private SaveOrderDialg dialg;
+    private String add_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,32 +66,45 @@ public class DeleteActivity extends AppCompatActivity {
     }
 
     public void onDelete(View view) {
-        String add_name = add_no.getText().toString();
+        add_name = add_no.getText().toString();
         if (add_name.isEmpty() || add_name.equals("")) {
             DbUtils.ShowMsg(this, "商品编号不能为空");
             return;
         }
-        DbUtils.delete(add_name, new DbCallBack<Integer>() {
 
+        SaveOrderDialg.OnCloseListener listener = new SaveOrderDialg.OnCloseListener() {
             @Override
-            public void before() {
+            public void onClick(Dialog dialog, boolean confirm) {
+                if (confirm) {
+                    DbUtils.delete(add_name, new DbCallBack<Integer>() {
 
+                        @Override
+                        public void before() {
+
+                        }
+
+                        @Override
+                        public void success(Integer result) {
+                            DbUtils.ShowMsg(context, "删除成功");
+                        }
+
+                        @Override
+                        public void failure(Throwable error) {
+                            DbUtils.ShowMsg(context, "3");
+                        }
+
+                        @Override
+                        public void finish() {
+
+                        }
+                    });
+                }
+                dialg.dismiss();
             }
+        };
+        dialg = new SaveOrderDialg(this, "是否删除此商品?");
+        dialg.setListener(listener);
+        dialg.show();
 
-            @Override
-            public void success(Integer result) {
-                DbUtils.ShowMsg(context, "删除成功");
-            }
-
-            @Override
-            public void failure(Throwable error) {
-                DbUtils.ShowMsg(context, "删除失败");
-            }
-
-            @Override
-            public void finish() {
-
-            }
-        });
     }
 }
