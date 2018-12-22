@@ -21,7 +21,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
 
-
+//设置自动更新表结构
+        DbUtils.AutoAlterTable();
 
 
     }
