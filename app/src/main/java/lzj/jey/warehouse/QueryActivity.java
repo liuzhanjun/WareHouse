@@ -54,7 +54,8 @@ public class QueryActivity extends AppCompatActivity {
     public void onQuery(View view) {
         adapter.getDate().clear();
         adapter.notifyDataSetChanged();
-        String add_name = add_no.getText().toString();
+        String add_name = add_no.getText().toString().trim();
+        Log.i("TAG", "onQuery: "+add_name);
         if (add_name.isEmpty() || add_name.equals("")) {
             DbUtils.ShowMsg(this, "商品编号不能为空");
             return;

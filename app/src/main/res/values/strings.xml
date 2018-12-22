@@ -3,6 +3,7 @@
     <string name="btn_q_1">添加或修改库存</string>
     <string name="btn_q_2">查询库存</string>
     <string name="btn_q_3">删除商品</string>
+    <string name="btn_q_4">货架排查</string>
     <string name="text_name_no">商品编号:</string>
     <string name="text_name_no_2">货号</string>
 

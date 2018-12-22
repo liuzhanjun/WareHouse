@@ -111,4 +111,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, DeleteActivity.class);
         startActivity(intent);
     }
+
+    public void to_line(View view) {
+        Intent intent = new Intent(this, CheckActivity.class);
+        startActivity(intent);
+    }
 }

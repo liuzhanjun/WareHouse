@@ -48,7 +48,17 @@ public class ComInfo implements DbManager.TableModel {
     @TableField
     @FieldType(value = "Integer")
     Integer locState5;//位置状态
+    @TableField
+    @FieldType(value = "Float")
+    Float price1;//价格1
 
+    @TableField
+    @FieldType(value = "Float")
+    Float price2;//价格2
+
+    @TableField
+    @FieldType(value = "Float")
+    Float price3;//价格3
 
     public ComInfo() {
 
@@ -67,6 +77,9 @@ public class ComInfo implements DbManager.TableModel {
         this.locState4 = 0;
         this.loc5 = "";
         this.locState5 = 0;
+        this.price1 = 0f;
+        this.price2 = 0f;
+        this.price3 = 0f;
     }
 
     public Integer get_id() {
@@ -165,8 +178,33 @@ public class ComInfo implements DbManager.TableModel {
         this.locState5 = locState5;
     }
 
+
+    public Float getPrice1() {
+        return price1;
+    }
+
+    public void setPrice1(Float price1) {
+        this.price1 = price1;
+    }
+
+    public Float getPrice2() {
+        return price2;
+    }
+
+    public void setPrice2(Float price2) {
+        this.price2 = price2;
+    }
+
+    public Float getPrice3() {
+        return price3;
+    }
+
+    public void setPrice3(Float price3) {
+        this.price3 = price3;
+    }
+
     @Override
     public String toString() {
-        return "商品编号：" + ComInfoNO + "   位置：" + loc1 + "," + loc2 + "," + loc3 + "," + loc4 + "," + loc5;
+        return "编号：" + ComInfoNO + "   位置：" + loc1 + "," + loc2 + "," + loc3 + "," + loc4 + "," + loc5;
     }
 }

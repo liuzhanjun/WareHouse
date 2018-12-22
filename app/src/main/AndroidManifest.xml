@@ -24,7 +24,8 @@
             android:label="@string/title_activity_add"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".QueryActivity" />
-        <activity android:name=".DeleteActivity"></activity>
+        <activity android:name=".DeleteActivity" />
+        <activity android:name=".CheckActivity"></activity>
     </application>
 
 </manifest>

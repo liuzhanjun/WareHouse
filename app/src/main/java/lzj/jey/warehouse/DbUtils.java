@@ -4,11 +4,13 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.lang.reflect.Type;
 import java.util.List;
 
 import lzj.jey.warehouse.bean.ComInfo;
 import lzj.jey.warehouse.bean.DbDataSize;
 import lzj.jey.warehouse.db.DbCallBack;
+import lzj.jey.warehouse.db.DbCallType;
 import lzj.jey.warehouse.db.DbManager;
 
 /**
@@ -128,16 +130,32 @@ public class DbUtils {
     }
 
 
-    public static void queryInfo2(String no, DbCallBack callback) {
+    public static void queryInfo2(String no, DbCallBack<List<ComInfo>> callback) {
         ComInfo info = new ComInfo(1);
         info.setComInfoNO(no);
         DbManager.dbManager.query(info, "ComInfoNO LIKE ?", new String[]{"%" + no + "%"}, callback);
     }
 
-    public static void queryInfo(String no, DbCallBack callback) {
+    public static void queryInfo(String no, DbCallBack<List<ComInfo>> callback) {
         ComInfo info = new ComInfo(1);
         info.setComInfoNO(no);
         DbManager.dbManager.query(info, "ComInfoNO = ?", new String[]{no}, callback);
+    }
+
+    public static List<ComInfo> queryInfoSyn(String no, DbCallBack<List<ComInfo>> callback) {
+        ComInfo info = new ComInfo(1);
+        info.setComInfoNO(no);
+        return DbManager.dbManager.querySyn(info, "ComInfoNO = ?", new String[]{no}, new DbCallType<List<ComInfo>>() {
+            @Override
+            public Type getmType() {
+                return super.getmType();
+            }
+        });
+    }
+
+    public static void queryByCon(String con,DbCallBack<List<ComInfo>> callBack) {
+        //select * from Cominfo where loc1 like '%C1%' or loc2 like '%C1%' or loc3 like '%C1%' or loc4 like '%C1%' or loc5 like '%C1%'
+        DbManager.dbManager.query("select * from Cominfo where loc1 like ? or loc2 like ? or loc3 like ? or loc4 like ? or loc5 like ?", new String[]{"%" + con + "%", "%" + con + "%", "%" + con + "%","%" + con + "%","%" + con + "%"}, callBack);
     }
 
     /**
@@ -182,6 +200,6 @@ public class DbUtils {
     }
 
     public static void delete(String add_name, DbCallBack<Integer> dbCallBack) {
-        DbManager.dbManager.delete(ComInfo.class,"ComInfoNO=?",new String[]{add_name},dbCallBack);
+        DbManager.dbManager.delete(ComInfo.class, "ComInfoNO=?", new String[]{add_name}, dbCallBack);
     }
 }

@@ -83,6 +83,37 @@
             </LinearLayout>
 
             <LinearLayout
+                style="@style/li_line"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/text_style_state"
+                    android:text="价格：" />
+
+                <EditText
+                    android:id="@+id/price1"
+                    style="@style/edit_style_loc"
+                    android:inputType="numberDecimal"
+                    android:hint="0"/>
+
+                <EditText
+                    android:id="@+id/price2"
+                    style="@style/edit_style_loc"
+                    android:inputType="numberDecimal"
+                    android:hint="0"/>
+
+                <EditText
+                    android:id="@+id/price3"
+                    style="@style/edit_style_loc"
+                    android:inputType="numberDecimal"
+                    android:hint="0"/>
+
+            </LinearLayout>
+
+            <LinearLayout
 
                 style="@style/li_line"
                 android:layout_width="match_parent"

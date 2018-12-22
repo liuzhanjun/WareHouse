@@ -2,6 +2,7 @@ package lzj.jey.warehouse.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,7 +31,7 @@ public class ComInfoAdapter extends BaseRecyclerAdapter {
     }
 
     public void setDate(List<ComInfo> date) {
-       this.date=date;
+        this.date = date;
     }
 
     public List<ComInfo> getDate() {
@@ -57,6 +58,10 @@ public class ComInfoAdapter extends BaseRecyclerAdapter {
         TextView loc_state_4 = (TextView) holder.itemView.findViewById(R.id.loc_state_4);
         TextView loc_state_5 = (TextView) holder.itemView.findViewById(R.id.loc_state_5);
 
+        TextView price1 = (TextView) holder.itemView.findViewById(R.id.price1);
+        TextView price2 = (TextView) holder.itemView.findViewById(R.id.price2);
+        TextView price3 = (TextView) holder.itemView.findViewById(R.id.price3);
+
         ComInfo info = date.get(position);
         add_no.setText(info.getComInfoNO());
         add_loc_1.setText(info.getLoc1());
@@ -70,7 +75,34 @@ public class ComInfoAdapter extends BaseRecyclerAdapter {
         loc_state_4.setText(info.getLocState4() + "");
         loc_state_5.setText(info.getLocState5() + "");
 
+        Float price_1 = info.getPrice1();
+        Float price_2 = info.getPrice2();
+        Float price_3 = info.getPrice3();
+        Log.i("22222", "onBindViewHolder: " + price1);
+        if (price_1 != null) {
+            price1.setText(String.valueOf(price_1));
+        } else {
+            price1.setText(String.valueOf(0f));
+        }
 
+        if (price_2 != null) {
+            price2.setText(String.valueOf(price_2));
+        } else {
+            price2.setText(String.valueOf(0f));
+        }
+        if (price_3 != null) {
+            price3.setText(String.valueOf(price_3));
+        } else {
+            price3.setText(String.valueOf(0f));
+        }
+    }
+
+
+    private boolean isNotEmpty(String loc1) {
+        if (!loc1.equals("") || !loc1.isEmpty()) {
+            return true;
+        }
+        return false;
     }
 
     @Override

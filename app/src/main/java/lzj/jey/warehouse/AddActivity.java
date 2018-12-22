@@ -24,6 +24,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
     EditText add_no;//商品编号
     EditText add_loc_1, add_loc_2, add_loc_3, add_loc_4, add_loc_5;//位置
+    EditText price1, price2, price3;
     SwitchButton loc_state_1, loc_state_2, loc_state_3, loc_state_4, loc_state_5;//位置状态
     Button btn_save;
     TextView query_info;
@@ -56,6 +57,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         add_loc_4 = (EditText) findViewById(R.id.add_loc_4);
         add_loc_5 = (EditText) findViewById(R.id.add_loc_5);
 
+        price1 = (EditText) findViewById(R.id.price1);
+        price2 = (EditText) findViewById(R.id.price2);
+        price3 = (EditText) findViewById(R.id.price3);
+
         loc_state_1 = (SwitchButton) findViewById(R.id.loc_state_1);
         loc_state_2 = (SwitchButton) findViewById(R.id.loc_state_2);
         loc_state_3 = (SwitchButton) findViewById(R.id.loc_state_3);
@@ -87,7 +92,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 String loc3 = add_loc_3.getText().toString() + "";
                 String loc4 = add_loc_4.getText().toString() + "";
                 String loc5 = add_loc_5.getText().toString() + "";
-
                 boolean is_loc_state1 = loc_state_1.isChecked();
                 boolean is_loc_state2 = loc_state_2.isChecked();
                 boolean is_loc_state3 = loc_state_3.isChecked();
@@ -120,6 +124,25 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     comInfo.setLoc5(loc5);
                 } else {
                     comInfo.setLoc5("无");
+                }
+
+                String price_1 = price1.getText().toString();
+                if (isNotEmpty(price_1)) {
+                    comInfo.setPrice1(Float.parseFloat(price_1));
+                } else {
+                    comInfo.setPrice1(0f);
+                }
+                String price_2 = price2.getText().toString();
+                if (isNotEmpty(price_2)) {
+                    comInfo.setPrice2(Float.parseFloat(price_2));
+                } else {
+                    comInfo.setPrice2(0f);
+                }
+                String price_3 = price3.getText().toString();
+                if (isNotEmpty(price_3)) {
+                    comInfo.setPrice3(Float.parseFloat(price_3));
+                } else {
+                    comInfo.setPrice3(0f);
                 }
 
 
@@ -175,16 +198,12 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         add_loc_3.setText("");
         add_loc_4.setText("");
         add_loc_5.setText("");
-        loc_state_1.setChecked(false);
-        loc_state_2.setChecked(false);
-        loc_state_3.setChecked(false);
-        loc_state_4.setChecked(false);
-        loc_state_5.setChecked(false);
-        String add_name = add_no.getText().toString();
+        String add_name = add_no.getText().toString().trim();
         if (add_name.isEmpty() || add_name.equals("")) {
             DbUtils.ShowMsg(this, "商品编号不能为空");
             return;
         }
+
         DbUtils.queryInfo(add_name, new DbCallBack<List<ComInfo>>() {
             @Override
             public void before() {
@@ -193,6 +212,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             @Override
             public void success(List<ComInfo> result) {
+
                 if (result != null) {
                     if (result.size() > 0) {
                         ComInfo info = result.get(0);
@@ -209,7 +229,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         query_info.setText(info.toString());
                     }
                 }
-
             }
 
             @Override
@@ -222,6 +241,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             }
         });
+
+
 
     }
 
