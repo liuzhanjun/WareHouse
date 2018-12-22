@@ -76,4 +76,39 @@ public class CheckActivity extends AppCompatActivity {
         }
         return false;
     }
+
+    public void onQueryByCy(View view) {
+        content.setText("");
+        DbUtils.queryByCy(new DbCallBack<List<ComInfo>>() {
+            @Override
+            public void before() {
+                Log.i(TAG, "before: ");
+            }
+
+            @Override
+            public void success(List<ComInfo> result) {
+                if (result != null) {
+                    if (result.size() > 0) {
+                        StringBuffer resultBf = new StringBuffer();
+                        for (ComInfo comInfo : result) {
+                            resultBf.append(comInfo.toString2() + "\n");
+                        }
+                        Log.i(TAG, "success: " + resultBf.toString());
+                        content.setText(resultBf.toString());
+                    }
+                }
+            }
+
+            @Override
+            public void failure(Throwable error) {
+                Log.i(TAG, "failure: ");
+            }
+
+            @Override
+            public void finish() {
+
+            }
+        });
+
+    }
 }

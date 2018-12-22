@@ -86,4 +86,8 @@ public class QueryActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void clean(View view) {
+        add_no.setText("");
+    }
 }

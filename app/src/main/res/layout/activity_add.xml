@@ -51,10 +51,18 @@
 
                 <EditText
                     android:id="@+id/add_no"
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="match_parent"
                     android:maxLength="20" />
-
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="清除"
+                    android:background="@drawable/click_state"
+                    android:gravity="center"
+                    android:textSize="20sp"
+                    android:onClick="clean"/>
             </LinearLayout>
 
             <LinearLayout
@@ -245,6 +253,26 @@
             </LinearLayout>
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal"
+                android:layout_marginTop="15dp">
+
+                <TextView
+                    style="@style/text_style_state"
+                    android:text="仓库:"/>
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/store1"
+                    style="@style/edit_style_loc" />
+
+                <TextView
+                    style="@style/text_style_state"
+                    android:text="展架:"/>
+                <com.suke.widget.SwitchButton
+                    android:id="@+id/store2"
+                    style="@style/edit_style_loc" />
+            </LinearLayout>
             <Button
                 android:id="@+id/btn_save"
                 android:layout_width="250dp"

@@ -60,6 +60,16 @@ public class ComInfo implements DbManager.TableModel {
     @FieldType(value = "Float")
     Float price3;//价格3
 
+
+    @TableField
+    @FieldType(value = "Integer")
+    Integer store1;//仓库是否有 0为没有，1为有
+
+    @TableField
+    @FieldType(value = "Integer")
+    Integer store2;//展示架是否有 0为没有，1为有
+
+
     public ComInfo() {
 
     }
@@ -80,6 +90,25 @@ public class ComInfo implements DbManager.TableModel {
         this.price1 = 0f;
         this.price2 = 0f;
         this.price3 = 0f;
+        this.store1=0;
+        this.store2=0;
+    }
+
+
+    public Integer getStore1() {
+        return store1;
+    }
+
+    public void setStore1(Integer store1) {
+        this.store1 = store1;
+    }
+
+    public Integer getStore2() {
+        return store2;
+    }
+
+    public void setStore2(Integer store2) {
+        this.store2 = store2;
     }
 
     public Integer get_id() {
@@ -206,5 +235,30 @@ public class ComInfo implements DbManager.TableModel {
     @Override
     public String toString() {
         return "编号：" + ComInfoNO + "   位置：" + loc1 + "," + loc2 + "," + loc3 + "," + loc4 + "," + loc5;
+    }
+
+
+    public String toString2() {
+        String st1="";
+        if (store1 == null) {
+            st1="无";
+        }else {
+            if (store1==0){
+                st1="无";
+            }else {
+                st1="有";
+            }
+        }
+        String st2="";
+        if (store2 == null) {
+            st2="无";
+        }else {
+            if (store2==0){
+                st2="无";
+            }else {
+                st2="有";
+            }
+        }
+        return "编号：" + ComInfoNO + "\t\t\t\t   仓库："+st1+", 展架："+st2 ;
     }
 }

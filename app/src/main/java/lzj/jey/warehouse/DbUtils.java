@@ -202,4 +202,9 @@ public class DbUtils {
     public static void delete(String add_name, DbCallBack<Integer> dbCallBack) {
         DbManager.dbManager.delete(ComInfo.class, "ComInfoNO=?", new String[]{add_name}, dbCallBack);
     }
+
+    public static void queryByCy(DbCallBack<List<ComInfo>> dbCallBack) {
+        //select * from Cominfo where store1<>store2 or store1 isnull or store2 isnull
+        DbManager.dbManager.query("select * from Cominfo where store1<>store2 or store1 isnull or store2 isnull",null,dbCallBack);
+    }
 }

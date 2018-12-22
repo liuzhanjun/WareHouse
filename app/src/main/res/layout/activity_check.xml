@@ -43,6 +43,18 @@
                 android:background="@drawable/click_state"
                 android:onClick="onQuery"
                 android:text="@string/query" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:background="@color/red"/>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/click_state"
+                android:onClick="onQueryByCy"
+                android:text="展架和仓库差异排查" />
 
             <TextView
                 android:id="@+id/content"

@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
 
         <TextView
             android:layout_width="wrap_content"
@@ -22,9 +23,18 @@
 
         <EditText
             android:id="@+id/add_no"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:maxLength="20" />
+            android:maxLength="20"
+            android:layout_weight="1"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="清除"
+            android:background="@drawable/click_state"
+            android:gravity="center"
+            android:textSize="20sp"
+            android:onClick="clean"/>
 
     </LinearLayout>
 

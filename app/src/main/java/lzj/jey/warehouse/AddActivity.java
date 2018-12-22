@@ -26,6 +26,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     EditText add_loc_1, add_loc_2, add_loc_3, add_loc_4, add_loc_5;//位置
     EditText price1, price2, price3;
     SwitchButton loc_state_1, loc_state_2, loc_state_3, loc_state_4, loc_state_5;//位置状态
+    SwitchButton store1,store2;
     Button btn_save;
     TextView query_info;
     private SaveOrderDialg dialg;
@@ -69,6 +70,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         btn_save = (Button) findViewById(R.id.btn_save);
         btn_save.setOnClickListener(this);
+        store1= (SwitchButton) findViewById(R.id.store1);
+        store2= (SwitchButton) findViewById(R.id.store2);
 
         query_info = (TextView) findViewById(R.id.query_info);
     }
@@ -98,8 +101,13 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 boolean is_loc_state4 = loc_state_4.isChecked();
                 boolean is_loc_state5 = loc_state_5.isChecked();
 
+                boolean store_1=store1.isChecked();
+                boolean store_2=store2.isChecked();
+
                 comInfo = new ComInfo();
                 comInfo.setComInfoNO(add_name);
+
+
                 if (isNotEmpty(loc1)) {
                     comInfo.setLoc1(loc1);
                 } else {
@@ -151,6 +159,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                 comInfo.setLocState3(checkState(is_loc_state3));
                 comInfo.setLocState4(checkState(is_loc_state4));
                 comInfo.setLocState5(checkState(is_loc_state5));
+
+                comInfo.setStore1(checkState(store_1));
+                comInfo.setStore2(checkState(store_2));
 
                 SaveOrderDialg.OnCloseListener listener = new SaveOrderDialg.OnCloseListener() {
                     @Override
@@ -226,6 +237,8 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         loc_state_3.setChecked(check(info.getLocState3()));
                         loc_state_4.setChecked(check(info.getLocState4()));
                         loc_state_5.setChecked(check(info.getLocState5()));
+                        store1.setChecked(check(info.getStore1()));
+                        store2.setChecked(check(info.getStore2()));
                         query_info.setText(info.toString());
                     }
                 }
@@ -247,10 +260,18 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     }
 
     public boolean check(Integer state) {
-        if (state == 1) {
-            return true;
-        } else {
+        if (state==null){
             return false;
+        }else {
+            if (state == 1) {
+                return true;
+            } else {
+                return false;
+            }
         }
+    }
+
+    public void clean(View view) {
+        add_no.setText("");
     }
 }

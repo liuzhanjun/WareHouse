@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 DbManager.dbManager.getInstans(getApplicationContext()).OpenDb(path);
             }
-        } else {
+        }
             //创建数据库
             //先判断这个文件夹是否存在
             File file = new File(path1);
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
             //设置自动更新表结构
             DbUtils.AutoAlterTable();
-        }
+
 
 
     }
