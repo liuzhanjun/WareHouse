@@ -32,6 +32,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
     private SaveOrderDialg dialg;
     private ComInfo comInfo;
     Context context;
+    private String TAG="add";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,21 +135,21 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                     comInfo.setLoc5("无");
                 }
 
-                String price_1 = price1.getText().toString();
-                if (isNotEmpty(price_1)) {
-                    comInfo.setPrice1(Float.parseFloat(price_1));
+                Float price_1 = aFloat(price1.getText().toString());
+                if (price_1!=null) {
+                    comInfo.setPrice1(price_1);
                 } else {
                     comInfo.setPrice1(0f);
                 }
-                String price_2 = price2.getText().toString();
-                if (isNotEmpty(price_2)) {
-                    comInfo.setPrice2(Float.parseFloat(price_2));
+                Float price_2 = aFloat(price2.getText().toString());
+                if (price_2!=null) {
+                    comInfo.setPrice2(price_2);
                 } else {
                     comInfo.setPrice2(0f);
                 }
-                String price_3 = price3.getText().toString();
-                if (isNotEmpty(price_3)) {
-                    comInfo.setPrice3(Float.parseFloat(price_3));
+                Float price_3 = aFloat(price3.getText().toString());
+                if (price_3!=null) {
+                    comInfo.setPrice3(price_3);
                 } else {
                     comInfo.setPrice3(0f);
                 }
@@ -187,6 +188,15 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         return false;
     }
 
+    private Float aFloat(String nub){
+        if (nub.equals("null")||nub.isEmpty()){
+            return 0.0f;
+        }else {
+            Float is=Float.parseFloat(nub);
+            return is;
+        }
+
+    }
 
     public Integer checkState(boolean state) {
 
@@ -209,6 +219,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         add_loc_3.setText("");
         add_loc_4.setText("");
         add_loc_5.setText("");
+        price1 .setText("");
+        price2.setText("");
+        price3.setText("");
         String add_name = add_no.getText().toString().trim();
         if (add_name.isEmpty() || add_name.equals("")) {
             DbUtils.ShowMsg(this, "商品编号不能为空");
@@ -239,14 +252,41 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
                         loc_state_5.setChecked(check(info.getLocState5()));
                         store1.setChecked(check(info.getStore1()));
                         store2.setChecked(check(info.getStore2()));
+                        price1.setText(String.valueOf(info.getPrice1()));
+                        price2.setText(String.valueOf(info.getPrice2()));
+                        price3.setText(String.valueOf(info.getPrice3()));
                         query_info.setText(info.toString());
+                    }else {
+                        loc_state_1.setChecked(false);
+                        loc_state_2.setChecked(false);
+                        loc_state_3.setChecked(false);
+                        loc_state_4.setChecked(false);
+                        loc_state_5.setChecked(false);
+                        store1.setChecked(false);
+                        store2.setChecked(false);
                     }
+                }else{
+                            loc_state_1.setChecked(false);
+                            loc_state_2.setChecked(false);
+                            loc_state_3.setChecked(false);
+                            loc_state_4.setChecked(false);
+                            loc_state_5.setChecked(false);
+                    store1.setChecked(false);
+                    store2.setChecked(false);
                 }
             }
 
             @Override
             public void failure(Throwable error) {
 
+                Log.i(TAG, "failure: ");
+                loc_state_1.setChecked(false);
+                loc_state_2.setChecked(false);
+                loc_state_3.setChecked(false);
+                loc_state_4.setChecked(false);
+                loc_state_5.setChecked(false);
+                store1.setChecked(false);
+                store2.setChecked(false);
             }
 
             @Override

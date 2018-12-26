@@ -144,7 +144,8 @@
 
                 <com.suke.widget.SwitchButton
                     android:id="@+id/loc_state_1"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc_1"
+                    app:sb_checked="false"/>
 
             </LinearLayout>
 
@@ -170,7 +171,8 @@
 
                 <com.suke.widget.SwitchButton
                     android:id="@+id/loc_state_2"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc_1"
+                    app:sb_checked="false"/>
 
             </LinearLayout>
 
@@ -196,7 +198,8 @@
 
                 <com.suke.widget.SwitchButton
                     android:id="@+id/loc_state_3"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc_1"
+                    app:sb_checked="false"/>
 
             </LinearLayout>
 
@@ -222,7 +225,8 @@
 
                 <com.suke.widget.SwitchButton
                     android:id="@+id/loc_state_4"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc_1"
+                    app:sb_checked="false"/>
 
             </LinearLayout>
 
@@ -248,7 +252,8 @@
 
                 <com.suke.widget.SwitchButton
                     android:id="@+id/loc_state_5"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc_1"
+                    app:sb_checked="false"/>
 
             </LinearLayout>
 
@@ -264,14 +269,16 @@
                     android:text="仓库:"/>
                 <com.suke.widget.SwitchButton
                     android:id="@+id/store1"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc"
+                    app:sb_checked="false"/>
 
                 <TextView
                     style="@style/text_style_state"
                     android:text="展架:"/>
                 <com.suke.widget.SwitchButton
                     android:id="@+id/store2"
-                    style="@style/edit_style_loc" />
+                    style="@style/edit_style_loc"
+                    app:sb_checked="false"/>
             </LinearLayout>
             <Button
                 android:id="@+id/btn_save"
